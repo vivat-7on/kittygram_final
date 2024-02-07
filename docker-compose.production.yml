@@ -6,27 +6,27 @@ volumes:
 
 services:
   db:
-    image: postgres:13.10
+    image: postgres:13
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    build: ./backend/
+    build: vivat7on/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
 
   frontend:
     env_file: .env
-    build: ./frontend/
+    build: vivat7on/kittygram_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
 
-
   gateway:
-    build: ./gateway/
+    build: vivat7on/kittygram_gateway
+    env_file: .env
     volumes:
       - static:/staticfiles/
     ports:
