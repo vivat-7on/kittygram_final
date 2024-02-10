@@ -11,12 +11,15 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Get commit info
         id: commit_info
         run: |
-          echo "::set-output name=commit_hash::$(git rev-parse --short ${{ github.sha }})"
-          echo "::set-output name=author_name::$(git log -1 --pretty=format:'%an' ${{ github.sha }})"
-
+          commit_hash=$(git rev-parse --short ${{ github.sha }})
+          author_name=$(git log -1 --pretty=format:'%an' ${{ github.sha }})
+          echo "::set-output name=commit_hash::$commit_hash"
+          echo "::set-output name=author_name::$author_name"
       - name: Send message
         uses: appleboy/telegram-action@master
         with:
