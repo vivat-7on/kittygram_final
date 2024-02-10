@@ -26,10 +26,6 @@ jobs:
           - '3.10'
           - '3.11'
     steps:
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
 
       - uses: actions/checkout@v3
 
