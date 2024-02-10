@@ -72,6 +72,7 @@ jobs:
           push: true
           tags: vivat7on/kittygram_backend:latest
 
+
   frontend_tests:
     runs-on: ubuntu-latest
     steps:
