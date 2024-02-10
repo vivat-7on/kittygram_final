@@ -1,5 +1,10 @@
 name: Main Kittygram workflow
 
+on:
+  push:
+    branches-ignore:
+      - 'none'
+
 jobs:
   tests:
     runs-on: ubuntu-latest
