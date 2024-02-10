@@ -26,6 +26,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Деплой kittygram успешно выполнен!
+            ${{ steps.commit_info.outputs.author_name }} успешно задеплоил kittygram!
             Хеш коммита: ${{ steps.commit_info.outputs.commit_hash }}
-            Имя автора: ${{ steps.commit_info.outputs.author_name }}
