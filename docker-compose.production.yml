@@ -15,7 +15,7 @@ services:
     image: vivat7on/kittygram_backend
     env_file: .env
     volumes:
-      - static:/backend_static
+      - static:/backend_static/
 
   frontend:
     env_file: .env
