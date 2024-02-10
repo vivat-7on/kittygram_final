@@ -181,4 +181,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             ${{ steps.get_author_name.outputs.author_name }} успешно задеплоил kittygram!
-            Хэш коммита: ${{ steps.get_commit
+            Хэш коммита: ${{ steps.get_commit_hash.outputs.commit_hash }}
+  
