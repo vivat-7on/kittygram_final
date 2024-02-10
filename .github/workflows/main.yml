@@ -2,8 +2,8 @@ name: Main Kittygram workflow
 
 on:
   push:
-    branches-ignore:
-      - 'none'
+    branches:
+      - '*'
 
 jobs:
   tests:
@@ -124,13 +124,9 @@ jobs:
           push: true
           tags: vivat7on/kittygram_gateway:latest
 
-on:
-  push:
-    branches:
-      - main
-
   deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     needs:
       - build_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
