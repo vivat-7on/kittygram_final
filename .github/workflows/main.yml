@@ -159,21 +159,21 @@ jobs:
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
             sudo docker-compose -f docker-compose.production.yml exec backend python manage.py collectstatic --no-input
 
-send_message:
-  runs-on: ubuntu-latest
-  needs: deploy
-  steps:
-    - name: Get commit hash
-      run: echo "::set-output name=commit_hash::$(git rev-parse --short HEAD)"
+  send_message:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Get commit hash
+        run: echo "::set-output name=commit_hash::$(git rev-parse --short HEAD)"
 
-    - name: Get author name
-      run: echo "::set-output name=author_name::$(git log -1 --pretty=format:'%an')"
+      - name: Get author name
+        run: echo "::set-output name=author_name::$(git log -1 --pretty=format:'%an')"
 
-    - name: Send message
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          ${{ steps.get_author_name.outputs.author_name }} успешно задеплоил kittygram!
-          Хэш коммита: ${{ steps.get_commit_hash.outputs.commit_hash }}
+      - name: Send message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ steps.get_author_name.outputs.author_name }} успешно задеплоил kittygram!
+            Хэш коммита: ${{ steps.get_commit_hash.outputs.commit_hash }}
