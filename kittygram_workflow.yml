@@ -6,9 +6,13 @@ on:
       - main
       - '*'
 
+
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
 
     services:
       postgres:
@@ -25,12 +29,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.9
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip 
-        pip install flake8==6.0.0 flake8-isort==6.0.0
+        
         pip install -r ./backend/requirements.txt
     - name: Test with flake8 and django tests
       env:
@@ -159,8 +163,7 @@ jobs:
             sudo docker compose -f docker-compose.production.yml down
             sudo docker compose -f docker-compose.production.yml up -d
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
-            sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
-#            sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
+            sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
