@@ -13,7 +13,7 @@ services:
 
   backend:
     depends_on:
-      - backend
+      - db
     image: vivat7on/kittygram_backend
     env_file: .env
     volumes:
