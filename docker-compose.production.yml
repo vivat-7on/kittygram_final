@@ -26,6 +26,8 @@ services:
 
   gateway:
     image: vivat7on/kittygram_gateway
+    depends_on:
+      - backend
     env_file: .env
     volumes:
       - static:/staticfiles/
