@@ -12,8 +12,6 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    depends_on:
-      - db
     image: vivat7on/kittygram_backend
     env_file: .env
     volumes:
@@ -27,8 +25,6 @@ services:
       - static:/frontend_static
 
   gateway:
-    depends_on:
-      - backend
     image: vivat7on/kittygram_gateway
     depends_on:
       - backend
