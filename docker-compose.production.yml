@@ -13,7 +13,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    image: juliasukhinina/kittygram_backend
+    image: vivat7on/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
