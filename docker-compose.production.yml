@@ -21,7 +21,7 @@ services:
 
   frontend:
     env_file: .env
-    image: vivat7on/kittygram_frontend
+    image: juliasukhinina/kittygram_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
