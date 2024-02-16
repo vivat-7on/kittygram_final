@@ -27,7 +27,7 @@ services:
       - static:/frontend_static
 
   gateway:
-    image: juliasukhinina/kittygram_gateway
+    image: vivat7on/kittygram_gateway
     depends_on:
       - backend
     env_file: .env
