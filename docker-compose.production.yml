@@ -13,7 +13,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    image: vivat7on/kittygram_backend
+    image: juliasukhinina/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
@@ -21,13 +21,13 @@ services:
 
   frontend:
     env_file: .env
-    image: vivat7on/kittygram_frontend
+    image: juliasukhinina/kittygram_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
 
   gateway:
-    image: vivat7on/kittygram_gateway
+    image: juliasukhinina/kittygram_gateway
     depends_on:
       - backend
     env_file: .env
