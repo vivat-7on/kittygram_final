@@ -3,9 +3,7 @@ name: Main Kittygram workflow
 on:
   push:
     branches:
-      - main
-      - '*'
-
+      - detached4
 
 jobs:
   tests:
